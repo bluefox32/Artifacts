@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Claude Artifact風サンプル</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+    }
+    .artifact {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 20px;
+      background: #f9f9f9;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      font-family: monospace;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 10px;
+    }
+    .saved-artifacts {
+      margin-top: 30px;
+    }
+    .artifact-box {
+      border: 1px dashed #666;
+      padding: 10px;
+      margin-top: 10px;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Claude Artifact風 出力・保存デモ</h2>
+
+<div class="artifact">
+  <label for="aiOutput">生成されたコード:</label><br>
+  <textarea id="aiOutput">
+// ここにAIが生成したコードを表示します
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+  </textarea>
+  <br>
+  <button onclick="saveArtifact()">保存</button>
+</div>
+
+<div class="saved-artifacts" id="savedArtifacts">
+  <h3>保存済みアーティファクト:</h3>
+</div>
+
+<script>
+  const savedArtifacts = [];
+
+  function saveArtifact() {
+    const content = document.getElementById("aiOutput").value;
+    savedArtifacts.push(content);
+    renderArtifacts();
+  }
+
+  function renderArtifacts() {
+    const container = document.getElementById("savedArtifacts");
+    container.innerHTML = "<h3>保存済みアーティファクト:</h3>";
+    savedArtifacts.forEach((item, index) => {
+      const box = document.createElement("div");
+      box.className = "artifact-box";
+      box.innerHTML = `<strong>#${index + 1}</strong><pre>${item}</pre>`;
+      container.appendChild(box);
+    });
+  }
+</script>
+
+</body>
+</html>
